@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Run4Fun Calculator</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Run4Fun Calculator">
+  <meta name="author" content="Ignacio Arevalo">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Run4Fun Calculator</h1>
+    <h2>Estimate your running performance</h2>
+    <p>Ignacio Arevalo<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>INTRODUCTION TO RUN4FUN CALCULATOR</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Welcome to the world of running!</p>
+
+<p>The new app &quot;Run4Fun Calculator&quot; will help you estimate your running performance.</p>
+
+<p>With this app you will be able to:</p>
+
+<ol>
+<li><p>Estimate your finish time.</p></li>
+<li><p>Estimate your energy consumption.</p></li>
+<li><p>Compare to other runners.</p></li>
+</ol>
+
+<p>Get on your trainers and go burn some kilometers!</p>
+
+<p>App available <a href="http://ignacioarevalo.shinyapps.io/Run4Fun/">here</a></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>ESTIMATE YOUR FINISH TIME</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Estimate how long will it take you to finish your favorite race.</p>
+
+<pre><code class="r">FinishTime &lt;- function (distance, pace) {
+  time &lt;- as.numeric(pace)*as.numeric(distance)/60
+  s&lt;-as.character(round(((time%%1*60)%%1)*60));
+  m&lt;-as.character((time%%1*60)%/%1)
+  h&lt;-as.character(time%/%1)
+  paste(h,&quot;hour(s)&quot;,m,&quot;minute(s)&quot;,s, &quot;second(s)&quot;,sep=&quot; &quot;)}
+</code></pre>
+
+<p>Say you want to run half a marathon at a pace of 4:30 min/km.</p>
+
+<pre><code class="r">FinishTime(21.1,4.5)
+</code></pre>
+
+<pre><code>## [1] &quot;1 hour(s) 34 minute(s) 57 second(s)&quot;
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>ESTIMATE YOUR ENERGY CONSUMPTION</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Find out how many calories will you need to recover your energy:</p>
+
+<pre><code class="r">Calories &lt;- function (distance, pace) {
+  time &lt;- as.numeric(pace)*as.numeric(distance)/60
+  calories &lt;- as.character(round(((9-as.numeric(pace))/(9-2.25))*1500*time))}
+</code></pre>
+
+<p>After your previous effort we bet you can go for a burger ;-)</p>
+
+<pre><code class="r">Calories(21.1,4.5)
+</code></pre>
+
+<pre><code>## [1] 1582
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>COMPARE TO OTHER RUNNERS!</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Find out how fast you are and which percentile are you in!</p>
+
+<pre><code class="r">Percentile &lt;- function (speed){
+  percentile &lt;- as.character(round(pnorm(speed,mean=12,sd=3)*100)); print(percentile)}
+</code></pre>
+
+<pre><code class="r">Percentile(c(9,12,15,18))
+</code></pre>
+
+<pre><code>## [1] &quot;16&quot; &quot;50&quot; &quot;84&quot; &quot;98&quot;
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" /></p>
+
+<p class='class'></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='INTRODUCTION TO RUN4FUN CALCULATOR'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='ESTIMATE YOUR FINISH TIME'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='ESTIMATE YOUR ENERGY CONSUMPTION'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='COMPARE TO OTHER RUNNERS!'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
